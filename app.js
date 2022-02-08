@@ -9,8 +9,8 @@ const checkSum = () => {
     partSum += parseInt(part.value);
   });
   if (partSum > 100) {
-    divide();
-    alertOver();
+    // divide();
+    // alertOver();
   }
 };
 
