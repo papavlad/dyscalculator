@@ -9,8 +9,7 @@ const checkSum = () => {
     partSum += parseInt(part.value);
   });
   if (partSum > 100) {
-    // divide();
-    // alertOver();
+    alertOver();
   }
 };
 
@@ -51,7 +50,7 @@ const generate = () => {
 
   const final = document.querySelector(".column:nth-of-type(2)");
   let ofFinal = document.createElement("input");
-  ofFinal.value = 50;
+  ofFinal.value = 0;
   ofFinal.setAttribute("type", "number");
   ofFinal.classList.add("part");
   final.append(ofFinal);
@@ -64,7 +63,6 @@ const generate = () => {
   won.append(ofWon);
 
   readd();
-  divide();
 };
 
 const alertOver = () => {
@@ -73,12 +71,11 @@ const alertOver = () => {
 const removeAlert = () => {
   alertBox.classList.remove("toggle-vis");
 };
-const readd = () => {
-  const inputs = document.querySelectorAll("input[type='number']");
 
-  inputs.forEach((input) => {
-    input.addEventListener("keyup", calculate);
-  });
+const readd = () => {
+  const evalButton = document.querySelector(".eval");
+  evalButton.addEventListener("click", calculate);
+
   button.addEventListener("click", generate);
 };
 
