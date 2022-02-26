@@ -7,34 +7,44 @@
     <title>Dyscalculator</title>
     <link rel="shortcut icon" type="image/jpg" href="img/favicon.png" />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/1fb1bd60d7.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <h1>Dyscalculator</h1>
     <main>
-      <div class="column">
-        <h2>Requirement</h2>
-        <h3 class="requirement">Kolokvijum 1</h3>
-        <h3 class="requirement">Kolokvijum 2</h3>
-        <div class="add-new">
-          <input type="text" class="new-item" />
-          <button class="plus">+</button>
-        </div>
+      <h2 class="first-heading">Requirement</h2>
+      <h2>% / fin</h2>
+      <h2>%</h2>
+      <h2 class="last-heading">Final</h2>
+
+      <div class="input-wrap">
+        <input type="text" value="Kolokvijum 1" /><span>pen</span>
       </div>
-      <div class="column">
-        <h2>% / final</h2>
-        <input type="number" class="part" min="0" max="100" value="50" />
-        <input type="number" class="part" min="0" max="100" value="50" />
+      <input type="number" class="part" min="0" max="100" value="50" />
+      <input type="number" class="won" min="0" max="100" value="0" />
+      <h3 class="final-score">88</h3>
+
+      <div class="input-wrap">
+        <input type="text" value="Kolokvijum 2" /><span>pen</span>
       </div>
-      <div class="column">
-        <h2>% won</h2>
-        <input type="number" class="won" min="0" max="100" value="0" />
-        <input type="number" class="won" min="0" max="100" value="0" />
+      <input type="number" class="part" min="0" max="100" value="50" />
+      <input type="number" class="won" min="0" max="100" value="0" />
+
+      <div class="input-wrap temp">
+        <input
+          class="add-new"
+          type="text"
+          value=""
+          placeholder="Click to edit"
+        /><span class="plus">plus</span>
       </div>
-      <div class="column">
-        <h2>Final</h2>
-        <h3 class="final-score">88</h3>
-        <button class="eval">=</button>
-      </div>
+      <div class="empty temp"></div>
+      <div class="empty temp"></div>
+      <button class="eval"><i class="fa-solid fa-equals"></i></button>
+      <button class="reset"><i class="fa-solid fa-arrows-rotate"></i></button>
     </main>
     <footer>
       <img src="img/footer.png" alt="" />

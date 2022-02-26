@@ -1,8 +1,10 @@
 const displayScore = document.querySelector(".final-score");
-const button = document.querySelector("button.plus");
+const button = document.querySelector(".plus");
 const alertBox = document.querySelector(".alert-container");
 
-const checkSum = () => {
+let counter = 0;
+
+const checkSumOver = () => {
   const parts = document.querySelectorAll(".part");
   let partSum = 0;
   parts.forEach((part) => {
@@ -10,6 +12,7 @@ const checkSum = () => {
   });
   if (partSum > 100) {
     alertOver();
+    return true;
   }
 };
 
@@ -24,9 +27,11 @@ const divide = () => {
 const calculate = () => {
   const parts = document.querySelectorAll(".part");
   const wons = document.querySelectorAll(".won");
-  checkSum();
+  if (checkSumOver()) {
+    return;
+  }
   let sum = 0;
-
+  const displayScore = document.querySelector(".final-score");
   for (i = 0; i < parts.length; i++) {
     let percent = parts[i].value / 100;
     let multiply = wons[i].value * percent;
@@ -36,47 +41,75 @@ const calculate = () => {
 };
 
 const generate = () => {
-  const newInput = document.querySelector(".add-new input").value;
+  const newInput = document.querySelector(".add-new").value;
+  const main = document.querySelector("main");
+
+  const inputWrap = document.createElement("DIV");
+  inputWrap.classList.add("input-wrap", "temp");
+  inputWrap.innerHTML =
+    '<input class="add-new" type="text" value="" placeholder="Click to edit" /><span class="plus">plus</span>';
+
   if (newInput == "") {
+    console.log("empty");
     return;
   }
+  if (counter > 0) {
+    const rowString = `<div class="input-wrap"><input type="text" value="${newInput}" /><span>pen</span></div><input type="number" class="part" min="0" max="100" value="0" /><input type="number" class="won" min="0" max="100" value="0" />`;
+    const row = document.createElement("DIV");
+    row.classList.add("row");
+    row.innerHTML = rowString;
 
-  const column = document.querySelector(".column");
-  const requirements = document.querySelector(".add-new");
-  const newItem = document.createElement("h3");
-  newItem.classList.add("requirements");
-  newItem.innerHTML = newInput;
-  column.insertBefore(newItem, requirements);
+    const temps = document.querySelectorAll(".temp");
+    temps.forEach((temp) => {
+      temp.remove();
+    });
 
-  const final = document.querySelector(".column:nth-of-type(2)");
-  let ofFinal = document.createElement("input");
-  ofFinal.value = 0;
-  ofFinal.setAttribute("type", "number");
-  ofFinal.classList.add("part");
-  final.append(ofFinal);
+    main.appendChild(row);
+    main.appendChild(inputWrap);
+  } else {
+    const temps = document.querySelectorAll(".temp");
+    const rowString = `<div class="input-wrap"><input type="text" value="${newInput}" /><span>pen</span></div><input type="number" class="part" min="0" max="100" value="0" /><input type="number" class="won" min="0" max="100" value="0" />`;
+    const row = document.createElement("DIV");
+    row.classList.add("row");
+    row.innerHTML = rowString;
+    temps.forEach((temp) => {
+      temp.remove();
+    });
+    main.insertBefore(row, main.children[11]);
+    main.appendChild(inputWrap);
+    counter++;
+  }
 
-  const won = document.querySelector(".column:nth-of-type(3)");
-  let ofWon = document.createElement("input");
-  ofWon.value = 0;
-  ofWon.setAttribute("type", "number");
-  ofWon.classList.add("won");
-  won.append(ofWon);
+  const plus = document.querySelector(".plus");
+  plus.addEventListener("click", generate);
+};
 
-  readd();
+const reset = () => {
+  const main = document.querySelector("main");
+  main.innerHTML = "";
+  main.innerHTML =
+    '<h2 class="first-heading">Requirement</h2><h2>% / fin</h2><h2>%</h2><h2 class="last-heading">Final</h2><div class="input-wrap"><input type="text" value="Kolokvijum 1" /><span>pen</span></div><input type="number" class="part" min="0" max="100" value="50" /><input type="number" class="won" min="0" max="100" value="0" /><h3 class="final-score">88</h3><div class="input-wrap"><input type="text" value="Kolokvijum 2" /><span>pen</span>      </div>      <input type="number" class="part" min="0" max="100" value="50" />      <input type="number" class="won" min="0" max="100" value="0" />      <div class="input-wrap temp">        <input          class="add-new"          type="text"          value=""          placeholder="Click to edit"        /><span class="plus">plus</span>      </div>      <div class="empty temp"></div>      <div class="empty temp"></div>      <button class="eval"><i class="fa-solid fa-equals"></i></button>      <button class="reset"><i class="fa-solid fa-arrows-rotate"></i></button>';
+
+  const button = document.querySelector(".plus");
+  const resetButton = document.querySelector(".reset");
+  const evalButton = document.querySelector(".eval");
+
+  button.addEventListener("click", generate);
+  evalButton.addEventListener("click", calculate);
+  resetButton.addEventListener("click", reset);
+  counter = 0;
 };
 
 const alertOver = () => {
+  const alertBox = document.querySelector(".alert-container");
   alertBox.classList.add("toggle-vis");
 };
 const removeAlert = () => {
+  const alertBox = document.querySelector(".alert-container");
   alertBox.classList.remove("toggle-vis");
 };
-
-const readd = () => {
-  const evalButton = document.querySelector(".eval");
-  evalButton.addEventListener("click", calculate);
-
-  button.addEventListener("click", generate);
-};
-
-readd();
+const resetButton = document.querySelector(".reset");
+const evalButton = document.querySelector(".eval");
+evalButton.addEventListener("click", calculate);
+resetButton.addEventListener("click", reset);
+button.addEventListener("click", generate);
