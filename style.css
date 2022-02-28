@@ -33,6 +33,7 @@ h1 {
   margin: 5rem auto;
   display: block;
   font-size: 8rem;
+  font-weight: 100;
   font-family: "Freestyle";
   text-align: center;
 }
@@ -40,7 +41,7 @@ h1 {
 h2 {
   font-size: 2.4rem;
   text-align: center;
-  margin-bottom: 5rem;
+  align-self: center;
 }
 .first-heading,
 .input-wrap {
@@ -49,12 +50,13 @@ h2 {
 .last-heading {
   grid-column: span 2;
 }
-main {
+main.home-main {
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
   grid-template-columns: repeat(8, 80px);
   grid-template-rows: repeat(4, 65px);
+  grid-auto-rows: 65px;
   gap: 50px;
   justify-content: center;
 }
@@ -146,7 +148,6 @@ input[type="number"] {
 
 .row {
   grid-column: span 6;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(6, 80px);
   grid-template-rows: repeat(1, 65px);
@@ -238,8 +239,30 @@ footer a:hover:after {
   opacity: 1;
   pointer-events: auto;
 }
-
+.mobile-final {
+  margin-top: 20px;
+  padding: 0 2rem;
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 65px);
+  gap: 20px;
+}
+.mobile-final .final-score {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.mobile-final button {
+  grid-row: span 2;
+}
 /* Credits page */
+.credits-main {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 .credits-main .img-div {
   width: 50%;
   display: flex;
@@ -277,4 +300,78 @@ footer a:hover:after {
   display: block;
   background: var(--text-color);
   margin: 2rem auto;
+}
+@media only screen and (max-width: 1000px) {
+  main.home-main {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 20px;
+  }
+  .first-heading,
+  .input-wrap {
+    grid-column: span 3;
+  }
+  .row {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    grid-column: span 5;
+  }
+  .alert {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .credits-main {
+    flex-direction: column;
+  }
+  .credits-main .img-div {
+    width: 100%;
+    margin-bottom: 10rem;
+  }
+  .credits-main .credits-text {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 720px) {
+  html {
+    font-size: 50%;
+  }
+  h1 {
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 50px;
+    font-size: 6rem;
+  }
+  main.home-main {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .first-heading,
+  .input-wrap {
+    grid-column: span 2;
+  }
+  .row {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column: span 4;
+  }
+  .empty {
+    display: none;
+  }
+  .last-heading {
+    display: none;
+  }
+  .desktop {
+    display: none;
+    pointer-events: none;
+  }
+  .mobile-final {
+    display: grid;
+  }
+}
+@media only screen and (max-width: 530px) {
+  span:not(.plus) {
+    display: none;
+  }
+  html {
+    font-size: 40%;
+  }
 }

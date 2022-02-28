@@ -1,4 +1,3 @@
-const displayScore = document.querySelector(".final-score");
 const button = document.querySelector(".plus");
 const alertBox = document.querySelector(".alert-container");
 
@@ -31,7 +30,10 @@ const calculate = () => {
     return;
   }
   let sum = 0;
-  const displayScore = document.querySelector(".final-score");
+  const displayScore =
+    window.innerWidth < 720
+      ? document.querySelectorAll(".final-score")[1]
+      : document.querySelectorAll(".final-score")[0];
   for (i = 0; i < parts.length; i++) {
     let percent = parts[i].value / 100;
     let multiply = wons[i].value * percent;
@@ -88,15 +90,12 @@ const reset = () => {
   const main = document.querySelector("main");
   main.innerHTML = "";
   main.innerHTML =
-    '<h2 class="first-heading">Requirement</h2><h2>% / fin</h2><h2>%</h2><h2 class="last-heading">Final</h2><div class="input-wrap"><input type="text" value="Kolokvijum 1" /><span>pen</span></div><input type="number" class="part" min="0" max="100" value="50" /><input type="number" class="won" min="0" max="100" value="0" /><h3 class="final-score">88</h3><div class="input-wrap"><input type="text" value="Kolokvijum 2" /><span>pen</span>      </div>      <input type="number" class="part" min="0" max="100" value="50" />      <input type="number" class="won" min="0" max="100" value="0" />      <div class="input-wrap temp">        <input          class="add-new"          type="text"          value=""          placeholder="Click to edit"        /><span class="plus">plus</span>      </div>      <div class="empty temp"></div>      <div class="empty temp"></div>      <button class="eval"><i class="fa-solid fa-equals"></i></button>      <button class="reset"><i class="fa-solid fa-arrows-rotate"></i></button>';
+    '<h2 class="first-heading">Requirement</h2>      <h2>% / fin</h2>      <h2>%</h2>      <h2 class="last-heading">Final</h2>      <div class="input-wrap">        <input type="text" value="Kolokvijum 1" /><span>pen</span>      </div>      <input type="number" class="part" min="0" max="100" value="50" />      <input type="number" class="won" min="0" max="100" value="0" />      <h3 class="final-score desktop">88</h3>      <div class="input-wrap">        <input type="text" value="Kolokvijum 2" /><span>pen</span>      </div>      <input type="number" class="part" min="0" max="100" value="50" />      <input type="number" class="won" min="0" max="100" value="0" />      <div class="input-wrap temp">        <input          class="add-new"          type="text"          value=""          placeholder="Click to edit"        /><span class="plus">plus</span>      </div>      <div class="empty temp"></div>      <div class="empty temp"></div>      <button class="eval desktop"><i class="fa-solid fa-equals"></i></button>      <button class="reset desktop">        <i class="fa-solid fa-arrows-rotate"></i>      </button>';
 
   const button = document.querySelector(".plus");
-  const resetButton = document.querySelector(".reset");
-  const evalButton = document.querySelector(".eval");
 
+  checkIfMobile();
   button.addEventListener("click", generate);
-  evalButton.addEventListener("click", calculate);
-  resetButton.addEventListener("click", reset);
   counter = 0;
 };
 
@@ -108,8 +107,20 @@ const removeAlert = () => {
   const alertBox = document.querySelector(".alert-container");
   alertBox.classList.remove("toggle-vis");
 };
-const resetButton = document.querySelector(".reset");
-const evalButton = document.querySelector(".eval");
-evalButton.addEventListener("click", calculate);
-resetButton.addEventListener("click", reset);
+
+const checkIfMobile = () => {
+  if (window.innerWidth < 720) {
+    const resetButton = document.querySelectorAll(".reset")[1];
+    const evalButton = document.querySelectorAll(".eval")[1];
+    evalButton.addEventListener("click", calculate);
+    resetButton.addEventListener("click", reset);
+  } else {
+    const resetButton = document.querySelector(".reset");
+    const evalButton = document.querySelector(".eval");
+    evalButton.addEventListener("click", calculate);
+    resetButton.addEventListener("click", reset);
+  }
+};
+
+checkIfMobile();
 button.addEventListener("click", generate);
