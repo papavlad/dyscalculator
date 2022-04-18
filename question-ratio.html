@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dyscalculator</title>
+    <link rel="shortcut icon" type="image/jpg" href="img/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="question.css" />
+    <script
+      src="https://kit.fontawesome.com/1fb1bd60d7.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Question Ratio</h1>
+      <a href="index.html">Back</a>
+    </div>
+    <main class="question">
+      <div class="title">
+        <p>
+          This function calculates how much correct answers you need to have to
+          get a certain grade.
+        </p>
+      </div>
+      <input
+        type="number"
+        name="number"
+        id="number"
+        placeholder="Number of questions"
+        class="maxQ"
+      />
+      <input
+        type="number"
+        name="number"
+        id="number"
+        placeholder="Correct answers"
+        class="correctQ"
+      />
+      <div class="q-final">
+        <h3 class="q-final-score final-score">0</h3>
+        <button class="q-eval eval"><i class="fa-solid fa-equals"></i></button>
+        <button class="q-reset reset">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+    </main>
+    <footer>
+      <img src="img/footer.png" alt="" />
+      <a href="credits.html">Credits</a>
+    </footer>
+    <script src="question.js"></script>
+  </body>
+</html>

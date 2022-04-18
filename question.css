@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.question {
+  max-width: 350px;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  margin-bottom: 3rem;
+}
+.q-final {
+  margin-top: 20px;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 65px);
+  gap: 20px;
+}
+.q-final .final-score {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.q-final button {
+  grid-row: span 2;
+}
+.question .title p {
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+.question input {
+  margin: 1rem 2rem;
+}
